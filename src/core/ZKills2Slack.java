@@ -10,14 +10,10 @@ import com.google.api.client.http.UrlEncodedContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.util.Maps;
 import com.google.gson.*;
-import com.sun.deploy.util.StringUtils;
-import jdk.nashorn.internal.parser.JSONParser;
 import com.google.api.client.http.HttpRequestFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
@@ -65,7 +61,7 @@ public class ZKills2Slack {
                 killList = new ArrayList<>(Arrays.asList(kills));
                 for(KillReport k: killList) {
                     Map<String, Object> payload = new HashMap<String, Object>();
-                    String value = Util.format((long)k.getZkb().getTotalValue());
+                    String value = Util.format((long) k.getZkb().getTotalValue());
                     payload.put("text", "<https://zkillboard.com/kill/" + k.getKillID() + "/|" + k.getAttacker().getCharacterName() + " (" + k.getAttacker().getAllianceName() + ") killed " + k.getVictim().getCharacterName() + " (" + k.getVictim().getAllianceName() + ") for " + value + " isk.>");
                     String jsonEncodedMessage = new Gson().toJson(payload);
                     HashMap<Object, Object> payloadToSend = Maps.newHashMap();
